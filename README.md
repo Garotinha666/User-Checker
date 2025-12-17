@@ -37,7 +37,7 @@ User Checker é uma ferramenta assíncrona e de alta performance que verifica a 
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/Garotinha666/User-Checker
+git clone https://github.com/garotinha666/user-checker.git
 cd user-checker
 ```
 
@@ -45,6 +45,28 @@ cd user-checker
 ```bash
 pip install -r requirements.txt
 ```
+
+## 🔑 Configuração de Tokens (Opcional)
+
+Algumas plataformas podem requerer tokens de autenticação para funcionar corretamente:
+
+### Discord
+Para verificar usernames no Discord, você precisará configurar um token:
+
+1. Acesse https://discord.com/developers/applications
+2. Crie uma nova aplicação ou selecione uma existente
+3. Vá em "Bot" e copie o token
+4. No arquivo `checker.py`, procure pela linha do Discord (linha ~23):
+   ```python
+   "7": ("Discord", "https://discord.com/api/v9/users/{}",
+         {"Authorization": "SEU_DISCORD_TOKEN_AQUI"}),
+   ```
+5. Substitua `SEU_DISCORD_TOKEN_AQUI` pelo token copiado
+
+**Nota:** O Discord requer autenticação. Sem um token válido, a verificação dessa plataforma não funcionará.
+
+### Twitter/X
+O token público já está incluído no código, mas pode expirar eventualmente. Se necessário, você pode obter um novo em https://developer.twitter.com
 
 ## 📖 Como Usar
 
@@ -139,8 +161,12 @@ connector = aiohttp.TCPConnector(limit=500, ssl=False)
 
 - **Uso Responsável**: Use esta ferramenta de forma ética e responsável
 - **Rate Limits**: Respeite os limites de taxa das APIs das plataformas
-- **Tokens**: Alguns tokens de API podem expirar e precisar ser atualizados
-- **Fins Educacionais**: Este projeto é para fins educacionais
+- **Tokens de API**: 
+  - Nunca compartilhe seus tokens publicamente
+  - O Discord requer um token válido para funcionar
+  - Alguns tokens podem expirar e precisar ser atualizados
+- **Segurança**: Mantenha seus tokens seguros e nunca os commite no Git
+- **Fins Educacionais**: Este projeto é para fins educacionais e de pesquisa
 
 ## 🤝 Contribuindo
 
